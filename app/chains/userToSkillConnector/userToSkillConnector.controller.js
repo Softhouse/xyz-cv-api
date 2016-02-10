@@ -8,7 +8,7 @@ var utils = require('../../utils/utils');
 function validateUserToSkillConnector(userToSkillConnector) {
     return new Promise(function(resolve, reject) {
         if (userToSkillConnector && userToSkillConnector.userId && userToSkillConnector.skillId && userToSkillConnector.level && userToSkillConnector.years) {
-            if ((userToSkillConnector.level >= 1) && (userToSkillConnector.level <= 5) && (userToSkillConnector.years > 0)) {
+            if ((userToSkillConnector.level >= 1) && (userToSkillConnector.level <= 5) && (userToSkillConnector.years > 0) && (userToSkillConnector.futureLevel <= 5 && userToSkillConnector.futureLevel >= 0) || !userToSkillConnector.futureLevel) {
                 userToSkillConnector = utils.extend(getUserToSkillConnectorTemplate(), userToSkillConnector);
                 return resolve(userToSkillConnector);
             }
@@ -24,7 +24,8 @@ function getUserToSkillConnectorTemplate() {
         userId: null,
         skillId: null,
         level: null,
-        years: null
+        years: null,
+        futureLevel: null
     };
 }
 

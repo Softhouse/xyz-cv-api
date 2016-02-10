@@ -40,6 +40,7 @@ describe('/userToSkillConnector', function() {
             skillId: '123',
             userId: '456',
             level: '3',
+            futureLevel: '4',
             years: '5',
             createdAt: '2015-06-16T10:33:27.803Z',
             updatedAt: '2015-06-16T10:33:27.803Z',
@@ -51,6 +52,7 @@ describe('/userToSkillConnector', function() {
                 skillId: '123',
                 userId: '456',
                 level: '3',
+                futureLevel: '4',
                 years: '5'
             })
             .reply(200, resultPost)
@@ -67,6 +69,7 @@ describe('/userToSkillConnector', function() {
                 skillId: '123',
                 userId: '456',
                 level: '3',
+                futureLevel: '4',
                 years: '5'
             })
 
@@ -208,6 +211,7 @@ describe('/userToSkillConnector', function() {
             skillId: '123',
             userId: '456',
             level: '2',
+            futureLevel: '3',
             years: '5',
             createdAt: '2015-06-16T13:46:07.589Z',
             updatedAt: '2015-06-16T13:46:07.589Z',
@@ -219,6 +223,7 @@ describe('/userToSkillConnector', function() {
                 skillId: '123',
                 userId: '456',
                 level: '2',
+                futureLevel: '3',
                 years: '5'
             })
             .reply(200, resultPost)
@@ -235,6 +240,7 @@ describe('/userToSkillConnector', function() {
                 skillId: '123',
                 userId: '456',
                 level: '2',
+                futureLevel: '3',
                 years: '5',
                 id: '789'
             })
@@ -638,6 +644,7 @@ describe('/userToSkillConnector', function() {
             skillId: '456',
             userId: '789',
             level: '3',
+            futureLevel: '4',
             years: '0',
             createdAt: '2015-06-15T11:36:08.114Z',
             updatedAt: '2015-06-15T11:36:08.114Z'
@@ -685,6 +692,56 @@ describe('/userToSkillConnector', function() {
             skillId: '456',
             userId: '789',
             level: '3',
+            futureLevel: '4',
+            createdAt: '2015-06-15T11:36:08.114Z',
+            updatedAt: '2015-06-15T11:36:08.114Z'
+        };
+
+        nock(mockedUrl)
+            .persist()
+            .put('/userToSkillConnector/123')
+            .reply(204)
+
+            .get('/userToSkillConnector/123')
+            .reply(200, resultGetById)
+
+            .get('/user?email=a@softhouse.se&')
+            .reply(200, getUserByEmailResponse);
+
+        request(url)
+            .put('/userToSkillConnector/123')
+            .set('x-forwarded-email', 'a@softhouse.se')
+            .set('x-forwarded-user', 'A')
+            .set('Content-Type', 'application/json')
+            .send(body)
+
+            // end handles the response
+            .end(function(err, res) {
+                expect(err).to.exist;
+                expect(res).to.exist;
+                expect(res.status).to.equal(400);
+                expect(res.text).to.equal(result);
+                done();
+            });
+    });
+
+    //===============================================================================
+
+    //===============================================================================
+
+    it('should reply with HTTP status code 400 and a correctly formatted string when updating a userToSkillConnector with a not allowed level (6)', function(done) {
+        var result = msg.INVALID_JSON_OBJECT;
+
+        var body = {
+            level: '6'
+        };
+
+        var resultGetById = {
+            _id: '123',
+            skillId: '456',
+            userId: '789',
+            level: '3',
+            futureLevel: '4',
             createdAt: '2015-06-15T11:36:08.114Z',
             updatedAt: '2015-06-15T11:36:08.114Z'
         };
@@ -731,6 +788,7 @@ describe('/userToSkillConnector', function() {
             skillId: '456',
             userId: '789',
             level: '3',
+            futureLevel: '4',
             createdAt: '2015-06-15T11:36:08.114Z',
             updatedAt: '2015-06-15T11:36:08.114Z'
         };
@@ -773,6 +831,7 @@ describe('/userToSkillConnector', function() {
             skillId: '456',
             userId: '789',
             level: '3',
+            futureLevel: '4',
             createdAt: '2015-06-15T11:36:08.114Z',
             updatedAt: '2015-06-15T11:36:08.114Z'
         };
@@ -817,6 +876,7 @@ describe('/userToSkillConnector', function() {
             skillId: '456',
             userId: '789',
             level: '3',
+            futureLevel: '4',
             createdAt: '2015-06-15T11:36:08.114Z',
             updatedAt: '2015-06-15T11:36:08.114Z'
         };
