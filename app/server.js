@@ -12,6 +12,7 @@ var attributeRoutes = require('./chains/attribute/attribute.routes')(express.Rou
 var userRoutes = require('./chains/user/user.routes')(express.Router());
 var roleRoutes = require('./chains/role/role.routes')(express.Router());
 var skillRoutes = require('./chains/skill/skill.routes')(express.Router());
+var languageRoutes = require('./chains/language/language.routes')(express.Router());
 var skillGroupRoutes = require('./chains/skillGroup/skillGroup.routes')(express.Router());
 var officeRoutes = require('./chains/office/office.routes')(express.Router());
 var assignmentRoutes = require('./chains/assignment/assignment.routes')(express.Router());
@@ -22,6 +23,7 @@ var fileRoutes = require('./chains/file/file.routes')(express.Router());
 
 var roleToAttributeConnectorRoutes = require('./chains/roleToAttributeConnector/roleToAttributeConnector.routes')(express.Router());
 var userToSkillConnectorRoutes = require('./chains/userToSkillConnector/userToSkillConnector.routes.js')(express.Router());
+var userToLanguageConnectorRoutes = require('./chains/userToLanguageConnector/userToLanguageConnector.routes.js')(express.Router());
 var skillToSkillGroupConnectorRoutes = require('./chains/skillToSkillGroupConnector/skillToSkillGroupConnector.routes.js')(express.Router());
 var userToOfficeConnectorRoutes = require('./chains/userToOfficeConnector/userToOfficeConnector.routes.js')(express.Router());
 var userToAssignmentConnectorRoutes = require('./chains/userToAssignmentConnector/userToAssignmentConnector.routes.js')(express.Router());
@@ -77,6 +79,7 @@ app.use('/office', officeRoutes);
 app.use('/assignment', assignmentRoutes);
 app.use('/customer', customerRoutes);
 app.use('/domain', domainRoutes);
+app.use('/language', languageRoutes);
 
 app.use('/file', fileRoutes);
 app.use('/authentication', authenticationRoutes);
@@ -86,6 +89,7 @@ app.use('/userToSkillConnector', userToSkillConnectorRoutes);
 app.use('/skillToSkillGroupConnector', skillToSkillGroupConnectorRoutes);
 app.use('/userToOfficeConnector', userToOfficeConnectorRoutes);
 app.use('/userToAssignmentConnector', userToAssignmentConnectorRoutes);
+app.use('/userToLanguageConnector', userToLanguageConnectorRoutes);
 
 app.use(errorMiddleware.errorFilter);
 
