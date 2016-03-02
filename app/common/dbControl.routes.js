@@ -14,9 +14,11 @@ var skillController = require('../chains/skill/skill.controller');
 var skillGroupController = require('../chains/skillGroup/skillGroup.controller');
 var skillToSkillGroupConnectorController = require('../chains/skillToSkillGroupConnector/skillToSkillGroupConnector.controller');
 var userController = require('../chains/user/user.controller');
+var languageController = require('../chains/language/language.controller');
 var userToOfficeConnectorController = require('../chains/userToOfficeConnector/userToOfficeConnector.controller');
 var userToSkillConnectorController = require('../chains/userToSkillConnector/userToSkillConnector.controller');
 var userToAssignmentConnectorController = require('../chains/userToAssignmentConnector/userToAssignmentConnector.controller');
+var userToLanguageConnectorController = require('../chains/userToLanguageConnector/userToLanguageConnector.controller');
 
 var responseHandler = require('../utils/response.handler');
 var randomHandler = require('../utils/random.handler');
@@ -546,6 +548,12 @@ function addAttributes() {
         },
         {
             name: 'canEditDomain'
+        },
+        {
+            name: 'canViewLanguage'
+        },
+        {
+            name: 'canEditLanguage'
         }
     ];
 
@@ -554,7 +562,8 @@ function addAttributes() {
         'canViewUser',
         'canViewAssignment',
         'canViewFile',
-        'canViewSkill'
+        'canViewSkill',
+        'canViewLanguage'
     ];
 
     return Promise.all(applyAddOnItemsRec(allAttributes, 0, attributeController.createNewAttribute));
