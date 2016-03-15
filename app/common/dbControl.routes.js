@@ -671,6 +671,9 @@ function addAttributes() {
         },
         {
             name: 'canEditCourse'
+        },
+        {
+            name: 'canViewAdmin'
         }
     ];
 
@@ -705,10 +708,16 @@ function addRoles() {
 function addSkillGroups() {
     var skillGroups = [
         {
-            name: 'technologies'
+            name: 'Project methods & standards',
+            order: 1
         },
         {
-            name: 'spokenLanguages'
+            name: 'Roles',
+            order: 2
+        },
+        {
+            name: 'Technologies',
+            order: 3
         }
     ];
 
